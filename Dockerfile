@@ -33,11 +33,10 @@ RUN ls -lh /root
 #RUN echo ${S3FS_RELEASE_TARGZ}
 
 FROM alpine:3.14 AS base
+MAINTAINER Andrey Tsarev
 
 RUN apk --update add vsftpd fuse libxml2 curl libstdc++ apache2-utils openssl linux-pam rsyslog
 
-
-#RUN ln -sf /dev/stdout /var/log/vsftpd.log
 RUN addgroup -S vsftpd && adduser -S vsftpd -G vsftpd
 WORKDIR /home/vsftpd
 
@@ -46,7 +45,8 @@ COPY --from=builder /lib/security/pam_pwdfile.so /lib/security/pam_pwdfile.so
 
 COPY docker-entrypoint.sh docker-entrypoint.sh
 COPY vsftpd.conf /root/vsftpd.conf
-# Copu pam file
+
+# Copy pam file
 COPY vsftpd /etc/pam.d/vsftpd
 RUN chmod 644 /etc/pam.d/vsftpd
 

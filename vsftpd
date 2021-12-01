@@ -1,0 +1,2 @@
+auth required pam_pwdfile.so debug pwdfile=/root/vsftpd.passwd
+account required pam_permit.so

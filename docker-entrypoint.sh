@@ -6,9 +6,6 @@ VSFTPD_DIR=/home/vsftpd
 touch /var/log/vsftpd.log
 tail -f /var/log/vsftpd.log > /dev/stdout &
 
-# Start logger
-rsyslogd
-
 # Setup s3fs-fuse access keys
 echo "$ACCESS_KEY_ID:$SECRET_ACCESS_KEY" > /etc/passwd-s3fs
 chmod 600 /etc/passwd-s3fs
@@ -56,7 +53,5 @@ chmod 600 "$PASSWD_FILE"
 
 
 #END Login Setup
-touch /etc/pam_debug
-
 
 exec "$@"

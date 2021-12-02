@@ -35,7 +35,7 @@ RUN ls -lh /root
 FROM alpine:3.14 AS base
 MAINTAINER Andrey Tsarev
 
-RUN apk --update add vsftpd fuse libxml2 curl libstdc++ apache2-utils openssl linux-pam rsyslog
+RUN apk --update add vsftpd fuse libxml2 curl libstdc++ apache2-utils openssl linux-pam
 
 RUN addgroup -S vsftpd && adduser -S vsftpd -G vsftpd
 WORKDIR /home/vsftpd

@@ -3,6 +3,9 @@ set -e
 
 VSFTPD_DIR=/home/vsftpd
 
+touch /var/log/vsftpd.log
+tail -f /var/log/vsftpd.log > /dev/stdout &
+
 # Start logger
 rsyslogd
 

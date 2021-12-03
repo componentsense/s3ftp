@@ -50,8 +50,10 @@ echo "$USER_CONFIGS" | while read -r ENTRY; do
   done
 
 chmod 600 "$PASSWD_FILE"
-
-
 #END Login Setup
+
+#Setup passive IP address
+IP_ADDRESS=$(curl -s ifconfig.me)
+sed -i -e '/pasv_address=/ s/=.*/='$IP_ADDRESS'/' /root/vsftpd.conf
 
 exec "$@"
